@@ -7,7 +7,7 @@
     android:background="@color/teal_200">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/booksRecView"
+        android:id="@+id/allBooksRecView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="1dp"

@@ -7,13 +7,13 @@ import android.os.Bundle;
 
 public class AllBooksActivity extends AppCompatActivity {
 
-    private RecyclerView booksRecView;
+    private RecyclerView allBooksRecView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
 
-        booksRecView = findViewById(R.id.booksRecView);
+        allBooksRecView = findViewById(R.id.allBooksRecView);
     }
 }

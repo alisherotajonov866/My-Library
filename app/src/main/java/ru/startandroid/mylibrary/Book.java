@@ -1,6 +1,6 @@
 package ru.startandroid.mylibrary;
 
-public class Books {
+public class Book {
     private int id ;
     private String name;
     private String author;
@@ -9,7 +9,7 @@ public class Books {
     private String shortDesc;
     private String longDesc;
 
-    public Books(int id, String name, String author, int pages, String imageUrl, String shortDesc, String longDesc) {
+    public Book(int id, String name, String author, int pages, String imageUrl, String shortDesc, String longDesc) {
         this.id = id;
         this.name = name;
         this.author = author;
