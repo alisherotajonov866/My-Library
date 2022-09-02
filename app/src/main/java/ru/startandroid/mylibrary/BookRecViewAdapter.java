@@ -2,11 +2,13 @@ package ru.startandroid.mylibrary;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +72,27 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                 Toast.makeText(mContext, books.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        holder.txtAuthor.setText(books.get(position).getAuthor());
+        holder.tvShortDes.setText(books.get(position).getShortDesc());
+
+        // bu kod orqali expanded id li relativelayout ning bizga ko'rinishi yoki ko'rinmaslikini belgishamiz mumkun shart berish orqali
+        if (books.get(position).isExpanded()){
+
+            //
+            TransitionManager.beginDelayedTransition(holder.allBooksItemCardVIew);
+
+            // agar shart bajarilsa 2-relativeLayout foydalanuvchiga ko'rinadi
+            holder.expandedRelLayout.setVisibility(View.VISIBLE);
+            holder.btnArrowDown.setVisibility(View.GONE);
+        }
+
+        // aks holda 2-relativeLayout yopiladi va ArrowDown Visible bo'ladi
+        else {
+            TransitionManager.beginDelayedTransition(holder.allBooksItemCardVIew);
+            holder.expandedRelLayout.setVisibility(View.GONE);
+            holder.btnArrowDown.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -89,11 +112,46 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         private ImageView imgBook;
         private TextView tvBookName;
 
+        private ImageView btnArrowDown,btnArrowUp;
+        private RelativeLayout expandedRelLayout;
+        private TextView txtAuthor,tvShortDes;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             allBooksItemCardVIew = itemView.findViewById(R.id.allBooksItemCardView);
             imgBook = itemView.findViewById(R.id.imgBook);
             tvBookName = itemView.findViewById(R.id.tvBookName);
+
+            btnArrowDown = itemView.findViewById(R.id.btnArrowDown);
+            btnArrowUp = itemView.findViewById(R.id.btnArrowUp);
+            expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
+            txtAuthor = itemView.findViewById(R.id.txtAuthor);
+            tvShortDes = itemView.findViewById(R.id.tvShortDes);
+
+            btnArrowDown.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //
+                    Book book = books.get(getAdapterPosition());
+                    // setExpanded ga avvalki holatiga teskari bo'lgan holat set qilinadi
+                 book.setExpanded(!book.isExpanded());
+
+                 // faqat bitta malumot o'zgarsa bo'ldi bizga, shuning uchun Item dan foydalandik
+                    // ko'p malumot o'zgargan bo'lsa arraylist da, unda boshqasidan foydalanar edik
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            btnArrowUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //
+                    Book book = books.get(getAdapterPosition());
+                    // setExpanded ga avvalki holatiga teskari bo'lgan holatga set qilinadi
+                   book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }
