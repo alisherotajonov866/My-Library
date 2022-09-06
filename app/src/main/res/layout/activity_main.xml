@@ -8,26 +8,26 @@
 
     <!--All caps (false ham true ham check qilinmasa) - buttonga yozilgan textni shundaylikicha ko'rinishini taminlaydi-->
     <ImageView
-        android:id="@+id/ivLogo"
+        android:id="@+id/imgLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
-        android:src="@mipmap/myphoto"
+        android:src="@mipmap/bookimage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/lemon"
         android:text="My Library"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/ivLogo"
-        app:layout_constraintStart_toStartOf="@+id/ivLogo"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
     <Button
         android:id="@+id/btnAllBooks"
@@ -38,7 +38,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <Button
         android:id="@+id/btnCurrentlyReading"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAllBooks" />
 
     <Button
-        android:id="@+id/btnAlreadyReadBook"
+        android:id="@+id/btnAlreadyRead"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -70,9 +70,9 @@
         android:layout_marginTop="10dp"
         android:text="Your Wish List"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/btnAlreadyReadBook"
-        app:layout_constraintStart_toStartOf="@+id/btnAlreadyReadBook"
-        app:layout_constraintTop_toBottomOf="@+id/btnAlreadyReadBook" />
+        app:layout_constraintEnd_toEndOf="@+id/btnAlreadyRead"
+        app:layout_constraintStart_toStartOf="@+id/btnAlreadyRead"
+        app:layout_constraintTop_toBottomOf="@+id/btnAlreadyRead" />
 
     <Button
         android:id="@+id/btnFavorite"
@@ -96,7 +96,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnFavorite" />
 
     <TextView
-        android:id="@+id/tvLIcence"
+        android:id="@+id/txtLIcence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"

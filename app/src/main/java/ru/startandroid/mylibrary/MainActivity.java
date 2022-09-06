@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnAllBooks,btnCurrentlyReading,btnAlready,btnWantRead,btnFavourite,btnAbout;
+    private Button btnAllBooks,btnCurrentlyReading,btnAlreadyRead,btnWantToRead,btnFavorite,btnAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         btnAllBooks = findViewById(R.id.btnAllBooks);
         btnCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
-        btnAlready = findViewById(R.id.btnAlreadyReadBook);
-        btnWantRead = findViewById(R.id.btnWantToRead);
-        btnFavourite = findViewById(R.id.btnFavorite);
+        btnAlreadyRead = findViewById(R.id.btnAlreadyRead);
+        btnWantToRead = findViewById(R.id.btnWantToRead);
+        btnFavorite = findViewById(R.id.btnFavorite);
         btnAbout = findViewById(R.id.btnAbout);
     }
 }

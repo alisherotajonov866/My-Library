@@ -2,6 +2,7 @@ package ru.startandroid.mylibrary;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -52,7 +52,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
         // holder orqali tvBookName ni tutib oldik va uning setText tiga
         // array list ning 'books' obyekti orqali kitob nomiga mos bo'lgan nomni set qilyabmiz
-        holder.tvBookName.setText(books.get(position).getName());
+        holder.txtBookName.setText(books.get(position).getName());
 
         // endi item.xml dan default holatda kelgan imageView ga arraylist dagi image larni yuklaymiz
         // bunda bizga gradle ga github orqali qo'shgan implementation code miz yordam beradi, u
@@ -65,33 +65,35 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                 .into(holder.imgBook);
 
         // bu code orqali biz cardView ustuga bosgan vaqtimiz nima bo'lishini yozishimiz mumkun.
-        // biz hozircha cardView ustuga bosgan vaqti mos kitob nomini qaytarish bilan kifoyalanamiz.
-        holder.imgBook.setOnClickListener(new View.OnClickListener() {
+        holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, books.get(position).getName(), Toast.LENGTH_SHORT).show();
+
+                // oldin bu yerda toast message bor edi, endi kitobning ustuga bosganda xabar emas uni malumotlarini ko'rishimiz mumkun bo'ladi
+                Intent intent = new Intent(mContext, BookActivity.class);
+                mContext.startActivity(intent);
             }
         });
 
         holder.txtAuthor.setText(books.get(position).getAuthor());
-        holder.tvShortDes.setText(books.get(position).getShortDesc());
+        holder.txtDescription.setText(books.get(position).getShortDesc());
 
         // bu kod orqali expanded id li relativelayout ning bizga ko'rinishi yoki ko'rinmaslikini belgishamiz mumkun shart berish orqali
         if (books.get(position).isExpanded()){
 
             //
-            TransitionManager.beginDelayedTransition(holder.allBooksItemCardVIew);
+            TransitionManager.beginDelayedTransition(holder.parent);
 
             // agar shart bajarilsa 2-relativeLayout foydalanuvchiga ko'rinadi
             holder.expandedRelLayout.setVisibility(View.VISIBLE);
-            holder.btnArrowDown.setVisibility(View.GONE);
+            holder.downArrow.setVisibility(View.GONE);
         }
 
         // aks holda 2-relativeLayout yopiladi va ArrowDown Visible bo'ladi
         else {
-            TransitionManager.beginDelayedTransition(holder.allBooksItemCardVIew);
+            TransitionManager.beginDelayedTransition(holder.parent);
             holder.expandedRelLayout.setVisibility(View.GONE);
-            holder.btnArrowDown.setVisibility(View.VISIBLE);
+            holder.downArrow.setVisibility(View.VISIBLE);
         }
     }
 
@@ -108,27 +110,27 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
     // ViewHolder deb nomlangan class yaratdik va u RecyclerView.ViewHolder dan meros oldi
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private CardView allBooksItemCardVIew;
+        private CardView parent;
         private ImageView imgBook;
-        private TextView tvBookName;
+        private TextView txtBookName;
 
-        private ImageView btnArrowDown,btnArrowUp;
+        private ImageView downArrow,upArrow;
         private RelativeLayout expandedRelLayout;
-        private TextView txtAuthor,tvShortDes;
+        private TextView txtAuthor,txtDescription;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            allBooksItemCardVIew = itemView.findViewById(R.id.allBooksItemCardView);
+            parent = itemView.findViewById(R.id.parent);
             imgBook = itemView.findViewById(R.id.imgBook);
-            tvBookName = itemView.findViewById(R.id.tvBookName);
+            txtBookName = itemView.findViewById(R.id.BookName);
 
-            btnArrowDown = itemView.findViewById(R.id.btnArrowDown);
-            btnArrowUp = itemView.findViewById(R.id.btnArrowUp);
+            downArrow = itemView.findViewById(R.id.btnDownArrow);
+            upArrow = itemView.findViewById(R.id.btnUpArrow);
             expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
             txtAuthor = itemView.findViewById(R.id.txtAuthor);
-            tvShortDes = itemView.findViewById(R.id.tvShortDes);
+            txtDescription = itemView.findViewById(R.id.txtDescription);
 
-            btnArrowDown.setOnClickListener(new View.OnClickListener() {
+            downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //
@@ -142,7 +144,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                 }
             });
 
-            btnArrowUp.setOnClickListener(new View.OnClickListener() {
+            upArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //

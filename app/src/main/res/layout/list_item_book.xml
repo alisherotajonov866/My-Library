@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/allBooksItemCardView"
+    android:id="@+id/parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -27,7 +27,7 @@
             </ImageView>
 
             <TextView
-                android:id="@+id/tvBookName"
+                android:id="@+id/BookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgBook"
@@ -40,7 +40,7 @@
             </TextView>
 
             <ImageView
-                android:id="@+id/btnArrowDown"
+                android:id="@+id/btnDownArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgBook"
@@ -71,7 +71,7 @@
                 android:text="Meisam" />
 
             <TextView
-                android:id="@+id/tvShortDes"
+                android:id="@+id/txtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtAuthor"
@@ -79,10 +79,10 @@
                 android:text="Short Description" />
 
             <ImageView
-                android:id="@+id/btnArrowUp"
+                android:id="@+id/btnUpArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvShortDes"
+                android:layout_below="@+id/txtDescription"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_up_arrow" />
         </RelativeLayout>
