@@ -71,7 +71,7 @@
                 android:text="Meisam" />
 
             <TextView
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtShortDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtAuthor"
@@ -82,7 +82,7 @@
                 android:id="@+id/btnUpArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtDescription"
+                android:layout_below="@+id/txtShortDescription"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_up_arrow" />
         </RelativeLayout>

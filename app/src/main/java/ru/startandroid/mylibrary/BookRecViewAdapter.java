@@ -128,7 +128,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             upArrow = itemView.findViewById(R.id.btnUpArrow);
             expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
             txtAuthor = itemView.findViewById(R.id.txtAuthor);
-            txtDescription = itemView.findViewById(R.id.txtDescription);
+            txtDescription = itemView.findViewById(R.id.txtShortDescription);
 
             downArrow.setOnClickListener(new View.OnClickListener() {
                 @Override
