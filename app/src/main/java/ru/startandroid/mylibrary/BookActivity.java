@@ -2,6 +2,7 @@ package ru.startandroid.mylibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class BookActivity extends AppCompatActivity {
+
+    public static final String BOOK_ID_KEY = "bookId";
 
     TextView txtBookName,txtAuthorName,txtPages,txtLongDescription;
     Button btnAddToCurrentlyReading,btnAddToWantToRead,btnAddToAlreadyRead,btnAddToFavorite;
@@ -22,12 +25,23 @@ public class BookActivity extends AppCompatActivity {
 
         initViews();
 
+        /*
         String longDescription = "Your long book description is a synopsis.  When writing this description, think like a buyer, and not like the author. You must become a master at both show and tell. Show enough to paint the picture, and tell enough to get them interested in what happens next.Any specific highlights should immediately jump off the page" ;
 
         // TODO: get the data from recycler view in here
         Book book = new Book(1,"Ilm olish sirlari","Imom zarnujiy",150,"https://shamskitoblari.uz/image/cache/catalog/diniy%20adabiyot/ilm%20olish%20sirlari-500x750.jpg","Ilm olish tartib qoidalarini o'rgatuvchi kitob",longDescription);
+        */
 
-        setData(book);
+        Intent intent = getIntent();
+        if (intent!=null){
+            int bookId = intent.getIntExtra(BOOK_ID_KEY,-1);
+            if(bookId == -1){
+                Book incomingBook = Utils.getInstance().getBookById(bookId);
+                if (incomingBook!=null){
+                    setData(incomingBook);
+                }
+            }
+        }
     }
 
     private void setData(Book book) {

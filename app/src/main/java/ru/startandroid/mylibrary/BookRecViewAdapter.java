@@ -1,5 +1,7 @@
 package ru.startandroid.mylibrary;
 
+import static ru.startandroid.mylibrary.BookActivity.BOOK_ID_KEY;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -71,6 +73,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
                 // oldin bu yerda toast message bor edi, endi kitobning ustuga bosganda xabar emas uni malumotlarini ko'rishimiz mumkun bo'ladi
                 Intent intent = new Intent(mContext, BookActivity.class);
+                intent.putExtra(BOOK_ID_KEY,books.get(position).getId());
                 mContext.startActivity(intent);
             }
         });
